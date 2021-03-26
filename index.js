@@ -9,12 +9,16 @@ function emit() {
     if (args[0] === "a") {
         return args[1]++;
     }
-    else {
+    else if (args[0] === "b") {
         return args[1].substring(-3) + args[2].toFixed();
+    }
+    else {
+        return args[1].substring(-3);
     }
 }
 emit("a", 100);
 emit("b", "cc", 100);
+emit("c", "sss");
 var u = {};
 console.log(((_a = u.b) !== null && _a !== void 0 ? _a : 0) + 100);
 if (u.c) {

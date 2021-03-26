@@ -68,16 +68,19 @@ function a(b) {
 ```ts
 // 使用事件時寫法
 
-function emit(...args: [e: "a", b: number] | [e: "b", b: string, c: number]) {
+function emit(...args: [e: "a", b: number] | [e: "b", b: string, c: number] | [e: "c", b: string]) {
     if (args[0] === "a") {
         return args[1]++;
-    } else {
+    } else if (args[0] === "b") {
         return args[1].substring(-3) + args[2].toFixed();
+    } else {
+        return args[1].substring(-3);
     }
 }
 emit("a", 100);
 emit("b", "cc", 100);
-// emit("c") 無法過編譯
+emit("c", "sss");
+// emit("d") 無法過編譯
 ```
 
 - async/await 很好用，要記的 await 一個async的函式，
