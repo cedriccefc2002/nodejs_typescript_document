@@ -1,6 +1,8 @@
 // 使用事件時寫法
-
+import { EventEmitter } from "events"
+const ev = new EventEmitter();
 function emit(...args: [e: "a", b: number] | [e: "b", b: string, c: number] | [e: "c", b: string]) {
+    ev.emit.apply(ev, args);
     if (args[0] === "a") {
         return args[1]++;
     } else if (args[0] === "b") {
@@ -9,10 +11,20 @@ function emit(...args: [e: "a", b: number] | [e: "b", b: string, c: number] | [e
         return args[1].substring(-3);
     }
 }
+function on(...args:
+    [e: "a", cb: (b: number) => void] |
+    [e: "b", cb: (b: string, c: number) => void] |
+    [e: "c", cb: (b: string) => void]) {
+    ev.addListener(args[0], args[1]);
+}
+on("a", (b: number) => { });
+// on("b", (b: number) => { }); // 無法過編譯
+on("b", (b: string, d: number) => { });
+// on("c", (b: string, d: number) => { }); // 無法過編譯
 emit("a", 100);
 emit("b", "cc", 100);
 emit("c", "sss");
-// emit("d") 無法過編譯
+// emit("d") // 無法過編譯
 
 // 不確定的資料結構可以用?
 
