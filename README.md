@@ -63,12 +63,33 @@ function a(b) {
 
 ## 撰寫經驗分享
 
+- 動態匯入
+- 匯入json tsconfig.json 中 "resolveJsonModule": true,
+- 當沒有使用匯出的變數時檔案不會真的匯入
+
+```ts
+// 動態匯入
+// 匯入json tsconfig.json 中 "resolveJsonModule": true,
+// 當沒有使用匯出的變數時檔案不會真的匯入
+import { name } from "./package.json";
+async () => {
+    // console.log(name); 當沒有使用匯出的變數時檔案不會真的匯入
+    const { compilerOptions } = await import("./tsconfig.json");
+    console.log(compilerOptions);
+}
+```
+
 - 使用事件驅動模式時寫法
 
 ```ts
+// 使用事件時寫法
 import { EventEmitter } from "events"
 const ev = new EventEmitter();
-function emit(...args: [e: "a", b: number] | [e: "b", b: string, c: number] | [e: "c", b: string]) {
+function emit(...args: 
+    [e: "a", b: number] | 
+    [e: "b", b: string, c: number] | 
+    [e: "c", b: string]
+) {
     ev.emit.apply(ev, args);
     if (args[0] === "a") {
         return args[1]++;
