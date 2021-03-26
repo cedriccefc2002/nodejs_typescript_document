@@ -1,0 +1,23 @@
+{
+  "name": "nodejs_typescript_document",
+  "version": "1.0.0",
+  "description": "nodejs與typescript介紹、使用與轉換案例",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cedriccefc2002/nodejs_typescript_document.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cedriccefc2002/nodejs_typescript_document/issues"
+  },
+  "homepage": "https://github.com/cedriccefc2002/nodejs_typescript_document#readme",
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
