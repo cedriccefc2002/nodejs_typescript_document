@@ -71,14 +71,16 @@ function a(b) {
 // 動態匯入
 // 匯入json tsconfig.json 中 "resolveJsonModule": true,
 // 當沒有使用匯出的變數時檔案不會真的匯入
+// ES 新的語法糖
 import { name } from "./package.json";
 async () => {
+    const a = 100_000_000_000; // 100000000000 語法糖
+    const b = 0b0000_1000_0000_0000 | 0b0000_0000_1000_0000 // 2048 | 128 語法糖
     // console.log(name); 當沒有使用匯出的變數時檔案不會真的匯入
     const { compilerOptions } = await import("./tsconfig.json");
     console.log(compilerOptions);
 }
 ```
-
 - 使用事件驅動模式時寫法
 
 ```ts

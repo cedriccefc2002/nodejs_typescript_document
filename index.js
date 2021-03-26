@@ -57,10 +57,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 (function () { return __awaiter(void 0, void 0, void 0, function () {
-    var compilerOptions;
+    var a, b, compilerOptions;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require("./tsconfig.json")); })];
+            case 0:
+                a = 100000000000;
+                b = 2048 | 128 // 2048 | 128 語法糖
+                ;
+                return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require("./tsconfig.json")); })];
             case 1:
                 compilerOptions = (_a.sent()).compilerOptions;
                 console.log(compilerOptions);
