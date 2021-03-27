@@ -15,6 +15,14 @@ nodejs與typescript介紹、使用與轉換案例
 
 `對windows的開發者有時候會出現路徑過長的問題，需要將專案方在[D:\]底下`
 
+### JavaScript 模組化
+
+[參考資料](https://ithelp.ithome.com.tw/articles/10219340)
+![https://i.redd.it/tfugj4n3l6ez.png](https://i.redd.it/tfugj4n3l6ez.png)
+
+- CommonJS 規範 nodejs
+- ES6 Modules 
+
 ### package.json
 
 ### require 的規則
@@ -84,6 +92,7 @@ require("../../lib")
 ## JS to TS
 
 1. 將附檔`.js` 改成 `.ts`
+1. 轉成 `ES6 Modules` 寫法 
 
 ## JS 轉換前盡量避免的寫法
 
