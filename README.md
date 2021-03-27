@@ -32,6 +32,13 @@
 
 ### package.json
 
+- version：
+https://docs.npmjs.com/cli/v7/configuring-npm/package-json#version
+
+- dependencies：https://docs.npmjs.com/cli/v7/configuring-npm/package-json#dependencies
+
+預設是相容模式("^x.y.z")，但是會有開發者不遵守語意化版本規範，所以改成指定版號"x.y.z"
+
 ### require 的規則
 
 - 在 slot-test/node_modules/@ag-slots/slot 目錄中 執行 `module.paths` 會出現引入套件的順序
@@ -61,7 +68,7 @@ require("../../lib")
 - 不建議手動變動 `node_modules` 應該要由套件管理工具去管理
 - @XXXXX/套件 = 解決不同團隊確有相同名稱套件問題
 
-### npm 與 yarn
+### npm 與 yarn pnpm
 
 ### npm
 
@@ -99,7 +106,9 @@ require("../../lib")
 ## JS to TS
 
 1. 將附檔`.js` 改成 `.ts`
-1. 轉成 `ES6 Modules` 寫法 
+1. 轉成 `ES6 Modules` 寫法
+1. 替換不支援的套件，或是手動寫定義檔：
+    - [https://www.typescriptlang.org/dt/search?search=](https://www.typescriptlang.org/dt/search?search=)
 
 ## JS 轉換前盡量避免的寫法
 
