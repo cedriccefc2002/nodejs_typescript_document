@@ -8,17 +8,32 @@ nodejs與typescript介紹、使用與轉換案例
     - 使用nodejs+mongodb+React開發電能管理系統
     - 使用electron+LevelDB+React 智能電盤嵌入式系統
 
+## nodejs 的套件管理
+
+### package.json
+
+### npm 與 yarn
+
+### npm
+
+### npmrc 
+
+- Scoped packages
+
+## 我使用nodejs的遇到問題
+
+- require("套件a") 但是卻沒有寫到 package.json 中
+- 當檔案數量超過已百個，程式碼超過上萬行之後，修改資料結構變得越來困難
+- 引入套件都要測試輸入的參數與輸出的內容
+- 事件驅動模式不知道要收到的事件名稱與內容
+
 ## 我使用typescript的經驗
 
 - 2012, 十月 01 開始關注 [Anders-Hejlsberg-Introducing-TypeScript](https://channel9.msdn.com/posts/Anders-Hejlsberg-Introducing-TypeScript)
 - 在Visual Studio 2013 上應用於前端網頁專案
 - VS Code 出現後開始導入到nodejs
 
-## 我使用nodejs的遇到問題
 
-- 當檔案數量超過已百個，程式碼超過上萬行之後，修改資料結構變得越來困難
-- 引入套件都要測試輸入的參數與輸出的內容
-- 事件驅動模式不知道要收到的事件名稱與內容
 
 ## 改用typescript後的好處
 
