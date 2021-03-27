@@ -1,7 +1,7 @@
 # nodejs與typescript介紹、使用與轉換案例
 
 目標：
-- nodejs `避雷針`
+- nodejs的坑
 - typescript `安麗`
 - js 轉 ts 大致流程分享
 
