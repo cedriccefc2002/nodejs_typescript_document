@@ -18,7 +18,6 @@ nodejs與typescript介紹、使用與轉換案例
 ### JavaScript 模組化
 
 [參考資料](https://ithelp.ithome.com.tw/articles/10219340)
-![https://i.redd.it/tfugj4n3l6ez.png](https://i.redd.it/tfugj4n3l6ez.png)
 
 - CommonJS 規範 nodejs
 - ES6 Modules 
