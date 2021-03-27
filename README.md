@@ -5,6 +5,10 @@
 - typescript `安麗`
 - js 轉 ts 大致流程分享
 
+預備知識：
+- 會javascript程式語言，對 ecmascript 規範 有一定了解
+- 使用`VS CODE` 且會使用`VS CODE`的終端機功能，對於`下命令列指令`不會恐懼(所有步驟都不會有圖形化界面，也不會有截圖)
+
 ## 我使用nodejs的經驗
 
 - 我在[io.js](https://blog.chh.tw/posts/what-is-iojs-nodejs-forking/) 出現之前就開始使用
