@@ -13,6 +13,8 @@ nodejs與typescript介紹、使用與轉換案例
 
 ![https://i.redd.it/tfugj4n3l6ez.png](https://i.redd.it/tfugj4n3l6ez.png)
 
+`對windows的開發者有時候會出現路徑過長的問題，需要將專案方在[D:\]底下`
+
 ### package.json
 
 ### require 的規則
