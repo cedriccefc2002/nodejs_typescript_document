@@ -1,5 +1,9 @@
 # nodejs與typescript介紹、使用與轉換案例
-nodejs與typescript介紹、使用與轉換案例
+
+目標：
+- nodejs `避雷針`
+- typescript `安麗`
+- js 轉 ts 大致流程分享
 
 ## 我使用nodejs的經驗
 
