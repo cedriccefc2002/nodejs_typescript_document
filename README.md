@@ -90,22 +90,37 @@ require("../../lib")
 - 在Visual Studio 2013 上應用於前端網頁專案
 - VS Code 出現後開始導入到nodejs
 
-
-
 ## 改用typescript後的好處
 
 - 比較安心
+- 可以使用ES新的語法，又可以兼容舊版JS執行環境
 - 容易維護，調整資料結構後會知道哪些程式需要對應修改
+- 兼容JS
 
 ## 改用typescript後的壞處
 
 - 寫邏輯前要先定義資料結構
 - 要對未支援的套件或js寫定義檔（.d.ts）
-- 一些特殊的寫法會無法通過編譯，需要花時間重寫
+- 一些特殊的寫法會無法通過編譯(但是還是會產生js檔)，需要花時間重寫
 
 ## JS to TS
 
-1. 將附檔`.js` 改成 `.ts`
+1. 安裝相關套件
+    ```sh
+    npm i -D typescript
+    npm i -D @types/node
+    ```
+1. 執行初始化
+    ```sh
+    npx tsc --init
+    ```
+1. 視需要調整 `tsconfig.json`
+    - compilerOptions.target 設成 "ES2015" 或以上
+1. 將附檔名由`.js` 改成 `.ts`
+1. 執行 `npx tsc` 進行編譯，此時會出現很多錯誤訊息，但是還是會轉換成成功
+1. 可以看一下編譯的js檔與之前應該一樣
+1. 修改 ts 檔，知道型別就定義，不知道的就先用`unknow`或是`any`型別後編譯
+1. 重複上面步驟直到所有`unknow`或是`any`型別都被正確定義 [參考資料](https://angular.tw/guide/typescript-configuration#noimplicitany-and-suppressimplicitanyindexerrors)
 1. 轉成 `ES6 Modules` 寫法
 1. 替換不支援的套件，或是手動寫定義檔：
     - [https://www.typescriptlang.org/dt/search?search=](https://www.typescriptlang.org/dt/search?search=)
@@ -225,13 +240,15 @@ console.log(d); // { a: 'aaa', b: 100 }
 - 不確定的資料結構可以用?
 
 ```ts
-// 不確定的資料結構可以用?
+// 不確定的資料結構可以用? 與 ??
 
 type U = {
     b?: number;
     c?: number | string;
+    d?: { c: string }
 }
 const u: U = {}
+let s = u.d?.c ?? ""; 
 console.log((u.b ?? 0) + 100)
 if (u.c) {
     if (typeof u.c === "number") {

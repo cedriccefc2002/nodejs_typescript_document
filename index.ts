@@ -43,13 +43,15 @@ emit("b", "cc", 100);
 emit("c", "sss");
 // emit("d") // 無法過編譯
 
-// 不確定的資料結構可以用?
+// 不確定的資料結構可以用? 與 ??
 
 type U = {
     b?: number;
     c?: number | string;
+    d?: { c: string }
 }
 const u: U = {}
+let s = u.d?.c ?? ""; 
 console.log((u.b ?? 0) + 100)
 if (u.c) {
     if (typeof u.c === "number") {

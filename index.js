@@ -54,7 +54,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _a;
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     var a, b, compilerOptions;
@@ -106,7 +106,8 @@ emit("a", 100);
 emit("b", "cc", 100);
 emit("c", "sss");
 var u = {};
-console.log(((_a = u.b) !== null && _a !== void 0 ? _a : 0) + 100);
+var s = (_b = (_a = u.d) === null || _a === void 0 ? void 0 : _a.c) !== null && _b !== void 0 ? _b : "";
+console.log(((_c = u.b) !== null && _c !== void 0 ? _c : 0) + 100);
 if (u.c) {
     if (typeof u.c === "number") {
         console.log((u.c) + 100);
