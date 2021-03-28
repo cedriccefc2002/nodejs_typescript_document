@@ -51,7 +51,7 @@ type U = {
     d?: { c: string }
 }
 const u: U = {}
-let s = u.d?.c ?? ""; 
+let s = u.d?.c ?? "";
 console.log((u.b ?? 0) + 100)
 if (u.c) {
     if (typeof u.c === "number") {
@@ -79,3 +79,34 @@ d1.click(); // aaa 100
 const d: IData = JSON.parse(JSON.stringify(d1));
 console.log(d); // { a: 'aaa', b: 100 }
 (d as Data).click(); // d.click(); TypeError: d.click is not a function
+
+//JS 自由的寫法
+function cal(params: any[]) {
+    return params[0] + params[1] - params[2] * params[3] / params[4] - params[5];
+}
+console.log(cal([false, "", {}, null, 100]))
+
+
+// 先設定結果為空物件，再慢慢塞資料
+function fn1() {
+    const result: any = {};
+    result.a = function sss() {
+
+    }
+    result.b = "ss";
+    result.c = 100;
+    return result;
+}
+// 最好改成以下寫法
+function fn2() {
+    let a = function sss() {
+
+    }
+    let b = "ss";
+    let c = 100;
+    return {
+        a,
+        b,
+        c,
+    }
+}

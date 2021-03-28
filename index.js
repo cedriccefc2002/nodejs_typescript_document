@@ -132,3 +132,29 @@ d1.click(); // aaa 100
 var d = JSON.parse(JSON.stringify(d1));
 console.log(d); // { a: 'aaa', b: 100 }
 d.click(); // d.click(); TypeError: d.click is not a function
+//JS 自由的寫法
+function cal(params) {
+    return params[0] + params[1] - params[2] * params[3] / params[4] - params[5];
+}
+console.log(cal([false, "", {}, null, 100]));
+// 先設定結果為空物件，再慢慢塞資料
+function fn1() {
+    var result = {};
+    result.a = function sss() {
+    };
+    result.b = "ss";
+    result.c = 100;
+    return result;
+}
+// 最好改成以下寫法
+function fn2() {
+    var a = function sss() {
+    };
+    var b = "ss";
+    var c = 100;
+    return {
+        a: a,
+        b: b,
+        c: c,
+    };
+}

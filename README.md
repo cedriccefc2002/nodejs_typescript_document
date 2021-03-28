@@ -117,7 +117,15 @@ npm i -D electron
 
 ## 改用typescript後的壞處
 
-- 寫邏輯前要先定義資料結構
+- 放棄**自由的寫法**
+    ```js
+    //JS 自由的寫法
+    function cal(params) {
+        return params[0] + params[1] - params[2] * params[3] / params[4] - params[5];
+    }
+    console.log(cal([false, "", {}, null, 100]));
+    ```
+- 寫邏輯前要先定義資料結構，確定輸入與輸出
 - 要對未支援的套件或js寫定義檔（.d.ts）
 - 一些特殊的寫法會無法通過編譯(但是還是會產生js檔)，需要花時間重寫
 
@@ -143,7 +151,33 @@ npm i -D electron
 1. 替換不支援的套件，或是手動寫定義檔：
     - [https://www.typescriptlang.org/dt/search?search=](https://www.typescriptlang.org/dt/search?search=)
 
-## JS 轉換前盡量避免的寫法
+## JS 轉換前盡量避免的寫法（只能改寫程式或用any型別，any型別失去型別檢查功能）
+
+- 先設定結果為空物件，再慢慢塞資料
+
+```js
+// 先設定結果為空物件，再慢慢塞資料
+function fn1() {
+    var result = {};
+    result.a = function sss() {
+    };
+    result.b = "ss";
+    result.c = 100;
+    return result;
+}
+// 最好改成以下寫法
+function fn2() {
+    var a = function sss() {
+    };
+    var b = "ss";
+    var c = 100;
+    return {
+        a: a,
+        b: b,
+        c: c,
+    };
+}
+```
 
 - 中途變動參數的型別
 
