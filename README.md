@@ -76,6 +76,23 @@ require("../../lib")
 
 - Scoped packages
 
+## [electron](https://www.electronjs.org/)
+
+- 安裝
+
+```sh
+npm i -D electron
+```
+
+- 執行 [create app](https://www.electronjs.org/docs/tutorial/quick-start#create-the-main-script-file)
+
+- 可以將node與chrome整合在一起，做單機板開發。
+    
+    - [visual-studio-code](https://www.electronjs.org/apps/visual-studio-code)
+    - [Microsoft Teams](https://www.electronjs.org/apps/cocos-creator)
+    - [cocos-creator](https://www.electronjs.org/apps/cocos-creator)
+    - [mongodb-compass](https://www.electronjs.org/apps/mongodb-compass)
+
 ## 我使用nodejs的遇到問題
 
 - require("套件a") 但是卻沒有寫到 package.json 中 
@@ -96,6 +113,7 @@ require("../../lib")
 - 可以使用ES新的語法，又可以兼容舊版JS執行環境
 - 容易維護，調整資料結構後會知道哪些程式需要對應修改
 - 兼容JS
+- vs code 本身就是用typescript寫成（使用[electron](https://www.electronjs.org/)），可以說是為了寫typescript而開發的
 
 ## 改用typescript後的壞處
 
