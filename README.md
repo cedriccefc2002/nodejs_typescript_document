@@ -331,6 +331,15 @@ export class BaseController {
 
 ## JS 轉換前盡量避免的寫法（只能改寫程式或用any型別，any型別失去型別檢查功能）
 
+- undefined 與 null 混用
+
+    ```js
+    var a
+    typeof a // "undefined"
+    a = null
+    typeof a // "object"
+    ```
+
 - 先設定結果為空物件，再慢慢塞資料
 
 ```js
