@@ -16,7 +16,18 @@
     - 使用nodejs+mongodb+React開發電能管理系統
     - 使用electron+LevelDB+React 智能電盤嵌入式系統
 
+## nodejs 的簡單介紹(與瀏覽器不一樣的地方)
+
+- 執行環境簡單，[單一執行檔](https://nodejs.org/dist/v14.16.0/win-x64/)
+    ```bat
+    node.exe index.js
+    ```
+  加上一堆要執行的js檔案九可以執行
+- 超過九成功能與套件都是用js實做，少部份需要引入[c++動態連結檔](https://nodejs.org/dist/latest-v14.x/docs/api/addons.html)，容易跨平台佈署。
+- 程式為單一執行序，[Buffer](https://nodejs.org/dist/latest-v14.x/docs/api/buffer.html) 物件可以分配額外的記憶體，使用[事件驅動](https://nodejs.org/dist/latest-v14.x/docs/api/events.html)與[異步io操作](https://nodejs.org/dist/latest-v14.x/docs/api/fs.html#fs_promise_example)。
+
 ## nodejs 的套件管理
+
 [Node.js 開發之父：「十個Node.js 的設計錯誤」](https://m.oursky.com/node-js-%E9%96%8B%E7%99%BC%E4%B9%8B%E7%88%B6-%E5%8D%81%E5%80%8Bnode-js-%E7%9A%84%E8%A8%AD%E8%A8%88%E9%8C%AF%E8%AA%A4-%E4%BB%A5%E5%8F%8A%E5%85%B6%E7%B5%82%E6%A5%B5%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95-f0db0afb496e)
 
 ![https://i.redd.it/tfugj4n3l6ez.png](https://i.redd.it/tfugj4n3l6ez.png)
@@ -27,11 +38,16 @@
 
 [參考資料](https://ithelp.ithome.com.tw/articles/10219340)
 
-- CommonJS 規範 nodejs
-- ES6 Modules 
+- CommonJS 規範 nodejs，nodejs 的套件預設目錄：node_modules
+- ES6 Modules ，為來統一規範
 
-### package.json
+### package.json，定義程式的設定資訊與所有套件相依關係
 
+- 雖然沒有 package.json 也可以執行，但是建議要建立
+
+```bat
+npm init @範圍/程式名稱 --yes
+```
 - version：
 
 https://docs.npmjs.com/cli/v7/configuring-npm/package-json#version
@@ -64,6 +80,9 @@ Type ".help" for more information.
   '/node_modules',
 ]
 ```
+
+- windows的**require**是不分大小寫的，
+  但是在**linux/unix**環境確有分大小寫，建議檔名全部小寫已避免引入錯誤或[重複引用](https://www.coder.work/article/1378037)。
 - 自己寫的程式要使用"相對路徑"引用，來確保引用到真正想要的東西
 
 ```js
@@ -74,6 +93,8 @@ require("../../lib")
 - @XXXXX/套件 = 解決不同團隊確有相同名稱套件問題
 
 ### npm 與 yarn pnpm
+
+npm 是預設的官方套件管理
 
 ### npm
 
@@ -145,6 +166,150 @@ npm i -D electron
 - 要對未支援的套件或js寫定義檔（.d.ts）
 - 一些特殊的寫法會無法通過編譯(但是還是會產生js檔)，需要花時間重寫
 
+## nodejs 新專案 使用typescript
+
+1. 先裝好nodejs，[https://nodejs.org/dist/v14.16.0/node-v14.16.0-x64.msi](https://nodejs.org/dist/v14.16.0/node-v14.16.0-x64.msi)
+
+1. 建立目錄：testnodejs
+
+1. 使用VSCODE 開啟目錄，開啟終端機
+
+1. 建立 package.json 設定，終端機執行以下指令：
+
+    ```bat
+    npm init @myscope/testnodejs --yes
+    ```
+
+1. 加入 tsconfig.json 檔案，內容如下：
+
+    ```json
+    {
+        "compilerOptions": {
+            "incremental": true,
+            "target": "ES2020",
+            "module": "commonjs",
+            "declaration": true,
+            "sourceMap": true,
+            "strict": true,
+            "esModuleInterop": true,
+            "resolveJsonModule": true,
+            "skipLibCheck": true,
+            "forceConsistentCasingInFileNames":         true,
+            "removeComments": true
+        },
+        "include": [
+            "**/*.ts"
+        ],
+        "exclude": [
+            "test/**/*.ts",
+            "test/**/*.tsx"
+        ]
+    }
+    ```
+1. 加入套件，終端機執行以下指令：
+
+    ```bat
+    npm i -D typescript
+    npm i -D @types/jest
+    npm i -D @types/node@14.*
+    npm i -D jest
+    npm i -D ts-jest
+    ```
+
+1. package.json 加入執行腳本 用於`npm run ***` 使用，內容如下：
+
+    ```json
+    "scripts": {
+        "build": "tsc",
+        "test": "jest --coverage"
+    },
+    ```
+1. 建立測試檔案 `index.ts` ，內容如下：
+
+    ```ts
+    import * as fs from "fs"
+    const data = fs.readFileSync(__filename);
+    console.log(data);
+    ```
+
+1. 編譯ts，終端機執行以下指令：
+
+    ```bat
+    npm run build
+    ```
+    或是
+    ```bat
+    npx tsc
+    ```
+1. 這時候會喘產生三個檔案
+
+    - index.js 編譯後的檔案，移除註解
+    - index.d.ts 型別定義的檔案，移除註解
+    - index.js.map 除錯時會用到的檔案
+
+1. 如果要保留註解，要將 tsconfig.json 中 removeComments 設成 false
+
+1. 執行程式 ` node index.js`
+
+    ```bat 
+    node index.js
+    ```
+1. VSCODE 除錯設定
+
+    確定 `tsconfig.json` 中 `compilerOptions.sourceMap` 為 **true**
+
+    建立 .vscode/tasks.json 檔案，設定以下內容
+    ```json
+    {
+    	"version": "2.0.0",
+    	"tasks": [
+    		{
+    			"type": "typescript",
+    			"tsconfig": "tsconfig.json",
+    			"problemMatcher": [
+    				"$tsc"
+    			],
+    			"group": "build",
+    			"label": "tsc: build"
+    		}
+    	]
+    }
+    ```
+
+    建立 .vscode/launch.json 檔案，設定以下內容
+    ```json
+    {
+        // 使用 IntelliSense 以得知可用的屬性。
+        // 暫留以檢視現有屬性的描述。
+        // 如需詳細資訊，請瀏覽: https://go.microsoft.com/fwlink/?  linkid=830387
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "type": "pwa-node",
+                "request": "launch",
+                "name": "Debug", // 除錯面板上面的名稱
+                "skipFiles": [
+                    "<node_internals>/**"
+                ],
+                "sourceMaps": true,
+                // 這邊放起始檔案名稱
+                "program": "${workspaceFolder}/app.js",
+                "preLaunchTask": "tsc: build",
+                "runtimeArgs": [
+                    "--preserve-symlinks",
+                    "--preserve-symlinks-main"
+                ],
+                "outFiles": [
+                    "${workspaceFolder}/**/*.js",
+                    "${workspaceFolder}/node_modules/**/*.js"
+                ]
+            }
+        ]
+    }
+    ```
+    選擇除錯面板**Debug**開始除錯，[參考資料](https://code.visualstudio.com/docs/editor/debugging)
+    ![除錯面板](https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png)
+
 ## JS to TS
 
 1. 安裝相關套件
@@ -162,12 +327,34 @@ npm i -D electron
 1. 執行 `npx tsc` 進行編譯，此時會出現很多錯誤訊息，但是還是會轉換成成功
 1. 可以看一下編譯的js檔與之前應該一樣
 1. 修改 ts 檔，知道型別就定義，不知道的就先用`unknow`或是`any`型別後編譯
-1. 重複上面步驟直到所有`unknow`或是`any`型別都被正確定義 [參考資料](https://angular.tw/guide/typescript-configuration#noimplicitany-and-suppressimplicitanyindexerrors)
 1. 轉成 `ES6 Modules` 寫法
+```js
+const Bluebird = require('bluebird')
+import Bluebird from "bluebird";
+```
+```js
+module.exports = new Helper();
+export = new Helper();
+
+module.exports = BaseController;
+export class BaseController {
+    
+}
+```
+1. 重複上面步驟直到所有`unknow`或是`any`型別都被正確定義 [參考資料](https://angular.tw/guide/typescript-configuration#noimplicitany-and-suppressimplicitanyindexerrors)
 1. 替換不支援的套件，或是手動寫定義檔：
     - [https://www.typescriptlang.org/dt/search?search=](https://www.typescriptlang.org/dt/search?search=)
 
 ## JS 轉換前盡量避免的寫法（只能改寫程式或用any型別，any型別失去型別檢查功能）
+
+- undefined 與 null 混用
+
+    ```js
+    var a
+    typeof a // "undefined"
+    a = null
+    typeof a // "object"
+    ```
 
 - 先設定結果為空物件，再慢慢塞資料
 
