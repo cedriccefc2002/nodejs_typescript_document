@@ -49,7 +49,12 @@
 npm init @範圍/程式名稱 --yes
 ```
 - version：
+
 https://docs.npmjs.com/cli/v7/configuring-npm/package-json#version
+
+- Scoped packages，建議所有私有套件都要加Scope定義
+
+https://docs.npmjs.com/cli/v7/using-npm/scope
 
 - dependencies：https://docs.npmjs.com/cli/v7/configuring-npm/package-json#dependencies
 
@@ -104,6 +109,17 @@ npm 是預設的官方套件管理
 https://www.npmjs.com/package/npx
 
 ### Scoped packages
+
+- 混合公有與私有註冊服務比較快的連線寫法
+```ini
+# https://docs.npmjs.com/cli/v7/using-npm/scope
+# 比較快的連線寫法
+# 預設的registry
+registry=https://registry.npmjs.org/
+# @sc-slots/* 套件會由此下載
+@私有套件Scope:registry=私有註冊服務                         
+always-auth=true
+```
 
 ## [electron](https://www.electronjs.org/)
 
