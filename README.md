@@ -95,7 +95,15 @@ npm 是預設的官方套件管理
 
 ### npmrc 
 
-- Scoped packages
+### npm-publish 問題
+如果沒有`.npmignore`檔案就會使用`.gitignore`檔案
+[npm-publish](https://docs.npmjs.com/cli/v7/commands/npm-publish)
+
+### npx 
+
+https://www.npmjs.com/package/npx
+
+### Scoped packages
 
 ## [electron](https://www.electronjs.org/)
 
